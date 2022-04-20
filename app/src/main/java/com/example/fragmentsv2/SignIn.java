@@ -1,0 +1,140 @@
+package com.example.fragmentsv2;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Patterns;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+public class SignIn extends AppCompatActivity implements View.OnClickListener {
+
+    private TextView registerTextView, forgotPassword;
+    private EditText emailAddress, pw;
+    private Button signIn;
+
+    private FirebaseAuth mAuth;
+    private ProgressBar progressBar;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_signin);
+
+        mAuth = FirebaseAuth.getInstance();
+
+        registerTextView = (TextView) findViewById(R.id.register);
+        registerTextView.setOnClickListener(this);
+
+        signIn = (Button) findViewById(R.id.signInBtn);
+        signIn.setOnClickListener(this);
+
+        emailAddress = (EditText) findViewById(R.id.editTextEmailAddress);
+        pw = (EditText) findViewById(R.id.editTextPassword);
+
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
+        forgotPassword =  (TextView) findViewById(R.id.forgotPassword);
+        forgotPassword.setOnClickListener(this);
+
+
+
+    }
+
+    public void onClick(View v){
+        switch (v.getId()){
+            case R.id.register:
+                startActivity(new Intent(this, RegisterUser.class));
+                break;
+
+            case R.id.signInBtn:
+                //startActivity(new Intent(this, HomeScreen.class));
+
+
+                userLogin();
+                break;
+
+            case R.id.forgotPassword:
+                startActivity(new Intent(this, ForgotPassword.class));
+                break;
+        }
+    }
+
+    private void userLogin() {
+        String email = emailAddress.getText().toString().trim();
+        String password = pw.getText().toString().trim();
+        if (validation(email, password) == false){
+            email = "";
+            password = "";
+            //THIS RETURN MUST BE ADDED IN
+            //return;
+        }
+
+        //TESTING PURPOSES ONLY DELETE AFTER
+        email = "seanr120700@gmail.com";
+        password = "pass12";
+
+        //END TESTING
+
+        progressBar.setVisibility(View.VISIBLE);
+
+        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+
+                    if (user.isEmailVerified()) {
+                        progressBar.setVisibility(View.INVISIBLE);
+                        startActivity(new Intent(SignIn.this, MainActivity.class));
+                        finishAffinity();
+                    }else {
+                        user.sendEmailVerification();
+                        Toast.makeText(SignIn.this, "Check your email to verify account", Toast.LENGTH_LONG).show();
+                        progressBar.setVisibility(View.INVISIBLE);
+
+                    }
+                }else {
+                    Toast.makeText(SignIn.this, "Failed to log in. please check your credentionals", Toast.LENGTH_LONG).show();
+                    progressBar.setVisibility(View.INVISIBLE);
+
+                }
+            }
+        });
+    }
+
+    private boolean validation(String email, String password) {
+        if(email.isEmpty()){
+            emailAddress.setError("Email can't be empty");
+            emailAddress.requestFocus();
+            return false;
+        }
+        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            emailAddress.setError("Email is not valid");
+            emailAddress.requestFocus();
+            return false;
+        }
+
+        if(password.isEmpty()){
+            pw.setError("Password can't be empty");
+            pw.requestFocus();
+            return false;
+        }
+        return true;
+    }
+
+
+}

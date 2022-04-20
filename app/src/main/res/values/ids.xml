@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="SignOutButton" type="id" />
+    <item name="emailAddressTextView" type="id" />
+    <item name="applyChangesBtn" type="id" />
+    <item name="fullNameTextView" type="id" />
+    <item name="emptyEmailTextView" type="id" />
+    <item name="emptyFullNameTextView" type="id" />
+    <item name="spinner" type="id" />
+    <item name="radio_male" type="id" />
+    <item name="radio_female" type="id" />
+</resources>
