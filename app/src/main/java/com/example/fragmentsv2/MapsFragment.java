@@ -32,7 +32,7 @@ public class MapsFragment extends Fragment {
         @Override
         public void onMapReady(GoogleMap googleMap) {
             LatLng ulCSIS = new LatLng(52.67399792339968, -8.57554856387995);
-            googleMap.addMarker(new MarkerOptions().position(ulCSIS).title("Marker in ulCsis"));
+           // googleMap.addMarker(new MarkerOptions().position(ulCSIS).title("Marker in ulCsis"));
 
             LatLng oaklawns = new LatLng(52.66993860396053, -8.55934684390429);
             googleMap.addMarker(new MarkerOptions().position(oaklawns).title("Marker in 45 oaklawns"));
