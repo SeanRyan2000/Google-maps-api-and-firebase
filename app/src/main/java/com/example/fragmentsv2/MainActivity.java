@@ -74,11 +74,9 @@ public class MainActivity extends AppCompatActivity {
         switch(view.getId()) {
             case R.id.radio_male:
                 if (checked)
-                    // Pirates are the best
                     break;
             case R.id.radio_female:
                 if (checked)
-                    // Ninjas rule
                     break;
         }
     }

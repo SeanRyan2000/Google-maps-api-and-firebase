@@ -16,15 +16,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.fragmentsv2.CreatePropertyActivity;
+import com.example.fragmentsv2.MainActivity;
 import com.example.fragmentsv2.ProfileActivity;
 import com.example.fragmentsv2.R;
+import com.example.fragmentsv2.SignIn;
 import com.example.fragmentsv2.User;
 import com.example.fragmentsv2.databinding.FragmentDashboardBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -38,6 +43,7 @@ public class DashboardFragment extends Fragment {
 
     private FragmentDashboardBinding binding;
     private FirebaseUser user;
+    private FloatingActionButton addPropertyButton;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -50,6 +56,24 @@ public class DashboardFragment extends Fragment {
 
 
         return root;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        addPropertyButton = view.findViewById(R.id.addPropertyFloatingButton);
+        addPropertyButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Log.d("Reached here", "entered on click listener");
+                Intent intent = new Intent(getContext(), CreatePropertyActivity.class);
+                startActivity(intent);
+                Log.d("Reached here", "entered on click listener");
+
+            }
+        });
+
+
     }
 
 
