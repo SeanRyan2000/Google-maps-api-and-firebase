@@ -65,7 +65,6 @@ public class DashboardFragment extends Fragment {
         addPropertyButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Log.d("Reached here", "entered on click listener");
                 Intent intent = new Intent(getContext(), CreatePropertyActivity.class);
                 startActivity(intent);
                 Log.d("Reached here", "entered on click listener");
