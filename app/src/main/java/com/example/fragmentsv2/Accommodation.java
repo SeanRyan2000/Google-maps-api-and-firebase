@@ -14,13 +14,13 @@ public class Accommodation {
     }
 
     public Accommodation(String address, String houseType, String contact, int price, int numOfBedrooms, int spacesAvailable, float longitude, float latitude) {
-        this.address = address;
+        this.address = address;     // got from auto complete fragment
         this.houseType = houseType;
         this.contact = contact;
         this.price = price;
         this.numOfBedrooms = numOfBedrooms;
         this.spacesAvailable = spacesAvailable;
-        this.longitude = longitude;
-        this.latitude = latitude;
+        this.longitude = longitude; // got from auto complete fragment
+        this.latitude = latitude;   // got from auto complete fragment
     }
 }

@@ -6,20 +6,194 @@
     android:layout_height="match_parent"
     tools:context=".CreatePropertyActivity">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:background="@color/cardview_light_background"
-        android:layout_margin="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="50dp">
-    
-    
-    <fragment
-        android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
-        android:id="@+id/autocomplete_fragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
 
-    </LinearLayout>
+    <TextView
+        android:id="@+id/textViewAddress"
+        android:layout_width="109dp"
+        android:layout_height="59dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="14dp"
+        android:layout_weight="1"
+        android:capitalize="characters"
+        android:text="Address:"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textViewNumOfBeds"
+        android:layout_width="109dp"
+        android:layout_height="59dp"
+        android:layout_below="@+id/textViewAddress"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="-3dp"
+        android:layout_marginTop="18dp"
+        android:layout_weight="1"
+        android:capitalize="characters"
+        android:text="Number of Bedrooms:"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textViewBedsAvailable"
+        android:layout_width="109dp"
+        android:layout_height="59dp"
+        android:layout_below="@+id/textViewNumOfBeds"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="17dp"
+        android:layout_weight="1"
+        android:capitalize="characters"
+        android:text="Bedrooms Available:"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textViewPrice"
+        android:layout_width="109dp"
+        android:layout_height="59dp"
+        android:layout_below="@+id/textViewBedsAvailable"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="17dp"
+        android:layout_weight="1"
+        android:capitalize="characters"
+        android:text="Price per Month:"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textViewContact"
+        android:layout_width="109dp"
+        android:layout_height="59dp"
+        android:layout_below="@+id/textViewPrice"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="17dp"
+        android:layout_weight="1"
+        android:capitalize="characters"
+        android:gravity="center"
+        android:text="Contact:"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textViewHouseType"
+        android:layout_width="109dp"
+        android:layout_height="59dp"
+        android:layout_below="@+id/textViewContact"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="17dp"
+        android:layout_weight="1"
+        android:capitalize="characters"
+        android:gravity="center"
+        android:text="House Type:"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <fragment
+        android:id="@+id/autocomplete_fragment"
+        android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
+        android:layout_width="326dp"
+        android:layout_height="57dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="15dp"
+        android:layout_toEndOf="@+id/textViewAddress"
+        android:hint="Address"
+        />
+
+    <Spinner
+        android:id="@+id/spinnerHouseType"
+        android:layout_width="290dp"
+        android:layout_height="59dp"
+        android:layout_below="@+id/textViewContact"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="16dp"
+        android:layout_toEndOf="@+id/textViewHouseType"
+        android:minHeight="48dp"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <EditText
+        android:id="@+id/editTextNumberOfBeds"
+        android:layout_width="291dp"
+        android:layout_height="56dp"
+        android:layout_below="@+id/autocomplete_fragment"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="19dp"
+        android:layout_toEndOf="@+id/textViewNumOfBeds"
+        android:ems="10"
+        android:inputType="number"
+        android:hint="Total number of beds in the house" />
+
+    <EditText
+        android:id="@+id/editTextBedsAvailable"
+        android:layout_width="291dp"
+        android:layout_height="56dp"
+        android:layout_below="@+id/editTextNumberOfBeds"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="21dp"
+        android:layout_toEndOf="@+id/textViewBedsAvailable"
+        android:ems="10"
+        android:inputType="number"
+        android:hint="Number of beds available" />
+
+    <EditText
+        android:id="@+id/editTextPricePerMonth"
+        android:layout_width="291dp"
+        android:layout_height="56dp"
+        android:layout_below="@+id/editTextBedsAvailable"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="20dp"
+        android:layout_toEndOf="@+id/textViewPrice"
+        android:ems="10"
+        android:inputType="number"
+        android:hint="Price per month in €" />
+
+    <EditText
+        android:id="@+id/editTextContact"
+        android:layout_width="291dp"
+        android:layout_height="56dp"
+        android:layout_below="@+id/editTextPricePerMonth"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="23dp"
+        android:layout_toEndOf="@+id/textViewContact"
+        android:ems="10"
+        android:inputType="phone"
+        android:hint="Phone number" />
+
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="103dp"
+        android:layout_height="66dp"
+        android:layout_below="@+id/spinnerHouseType"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="145dp"
+        android:layout_marginTop="148dp"
+        android:layout_marginEnd="145dp"
+        android:text="Create Post" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="98dp"
+        android:layout_height="75dp"
+        android:layout_below="@+id/spinnerHouseType"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="29dp"
+        app:srcCompat="@android:drawable/ic_menu_camera" />
 
 </RelativeLayout>

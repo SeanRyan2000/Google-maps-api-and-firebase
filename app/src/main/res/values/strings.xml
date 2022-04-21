@@ -13,4 +13,11 @@
         <item>Fourth year</item>
         <item>Post graduate</item>
     </string-array>
+
+    <string-array name="house_type_array">
+        <item>Terraced</item>
+        <item>Semi detached</item>
+        <item>Detached</item>
+        <item>Apartment</item>
+    </string-array>
 </resources>
