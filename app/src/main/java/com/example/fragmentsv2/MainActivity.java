@@ -33,16 +33,11 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if(user==null){
-            Log.e("Reached here", "Inside of if statement");
             Intent intent = new Intent(MainActivity.this, SignIn.class);
-            Log.e("Reached here", "Inside of if statement");
             startActivity(intent);
-            Log.e("Reached here", "Inside of if statement");
             finish();
         }else {
-            Log.e("Reached here", "Else statement of if");
         }
-        Log.e("Reached here", "Didnt get if statement or method");
 
 
 

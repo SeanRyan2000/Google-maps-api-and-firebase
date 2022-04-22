@@ -9,6 +9,7 @@
         <entry key="..\:/rando/Downloads/College/Year3/mobile app/Fragments/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.24" />
         <entry key="..\:/rando/Downloads/College/Year3/mobile app/Fragments/app/src/main/res/drawable/ic_launcher_background.xml" value="0.24" />
         <entry key="..\:/rando/Downloads/College/Year3/mobile app/Fragments/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.24" />
+        <entry key="..\:/rando/Downloads/College/Year3/mobile app/Fragments/app/src/main/res/layout/activity_accomodation_list.xml" value="0.2675438596491228" />
         <entry key="..\:/rando/Downloads/College/Year3/mobile app/Fragments/app/src/main/res/layout/activity_create_property.xml" value="0.42735042735042733" />
         <entry key="..\:/rando/Downloads/College/Year3/mobile app/Fragments/app/src/main/res/layout/activity_forgot_password.xml" value="0.315625" />
         <entry key="..\:/rando/Downloads/College/Year3/mobile app/Fragments/app/src/main/res/layout/activity_home_screen.xml" value="0.25" />
@@ -16,10 +17,11 @@
         <entry key="..\:/rando/Downloads/College/Year3/mobile app/Fragments/app/src/main/res/layout/activity_profile.xml" value="0.48777173913043476" />
         <entry key="..\:/rando/Downloads/College/Year3/mobile app/Fragments/app/src/main/res/layout/activity_sign_in2.xml" value="0.315625" />
         <entry key="..\:/rando/Downloads/College/Year3/mobile app/Fragments/app/src/main/res/layout/activity_signin.xml" value="0.48777173913043476" />
-        <entry key="..\:/rando/Downloads/College/Year3/mobile app/Fragments/app/src/main/res/layout/fragment_dashboard.xml" value="0.48777173913043476" />
+        <entry key="..\:/rando/Downloads/College/Year3/mobile app/Fragments/app/src/main/res/layout/fragment_dashboard.xml" value="0.25" />
         <entry key="..\:/rando/Downloads/College/Year3/mobile app/Fragments/app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="..\:/rando/Downloads/College/Year3/mobile app/Fragments/app/src/main/res/layout/fragment_maps.xml" value="0.315625" />
         <entry key="..\:/rando/Downloads/College/Year3/mobile app/Fragments/app/src/main/res/layout/fragment_notifications.xml" value="0.315625" />
+        <entry key="..\:/rando/Downloads/College/Year3/mobile app/Fragments/app/src/main/res/layout/item.xml" value="0.33" />
         <entry key="..\:/rando/Downloads/College/Year3/mobile app/Fragments/app/src/main/res/menu/bottom_nav_menu.xml" value="0.315625" />
       </map>
     </option>

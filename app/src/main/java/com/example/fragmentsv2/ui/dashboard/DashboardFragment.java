@@ -19,7 +19,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fragmentsv2.AccomodationList;
 import com.example.fragmentsv2.CreatePropertyActivity;
 import com.example.fragmentsv2.MainActivity;
 import com.example.fragmentsv2.ProfileActivity;
@@ -44,6 +46,9 @@ public class DashboardFragment extends Fragment {
     private FragmentDashboardBinding binding;
     private FirebaseUser user;
     private FloatingActionButton addPropertyButton;
+    private Button recyclerviewbtn;
+
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -54,13 +59,14 @@ public class DashboardFragment extends Fragment {
         View root = binding.getRoot();
 
 
-
         return root;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+
         addPropertyButton = view.findViewById(R.id.addPropertyFloatingButton);
         addPropertyButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -72,7 +78,17 @@ public class DashboardFragment extends Fragment {
             }
         });
 
+        recyclerviewbtn = view.findViewById(R.id.recyclerviewbtn);
+        recyclerviewbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                Intent i = new Intent(getContext(), AccomodationList.class);
+                startActivity(i);
+
+
+            }
+        });
     }
 
 

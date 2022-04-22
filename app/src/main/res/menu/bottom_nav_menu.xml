@@ -3,12 +3,12 @@
 
     <item
         android:id="@+id/navigation_home"
-        android:icon="@drawable/ic_home_black_24dp"
+        android:icon="@android:drawable/ic_menu_my_calendar"
         android:title="@string/title_home" />
 
     <item
         android:id="@+id/navigation_dashboard"
-        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:icon="@drawable/ic_home_black_24dp"
         android:title="@string/title_dashboard" />
 
     <item
@@ -17,7 +17,7 @@
         android:title="@string/title_notifications" />
     <item
         android:id="@+id/navigation_maps"
-        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:icon="@android:drawable/ic_menu_mapmode"
         android:title="@string/title_maps" />
 
 </menu>

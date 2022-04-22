@@ -13,6 +13,7 @@ public class Accommodation {
     public Accommodation(){
     }
 
+
     public Accommodation(String address, String houseType, String contact, String imageUrl, double price, int numOfBedrooms, int spacesAvailable, double longitude, double latitude) {
         this.address = address;     // got from auto complete fragment
         this.houseType = houseType;
@@ -25,4 +26,39 @@ public class Accommodation {
         this.latitude = latitude;   // got from auto complete fragment
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public String getHouseType() {
+        return houseType;
+    }
+
+    public String getContact() {
+        return contact;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public int getNumOfBedrooms() {
+        return numOfBedrooms;
+    }
+
+    public int getSpacesAvailable() {
+        return spacesAvailable;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
 }
