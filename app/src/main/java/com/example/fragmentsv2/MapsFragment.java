@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,10 +16,16 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MapsFragment extends Fragment {
 
     private OnMapReadyCallback callback = new OnMapReadyCallback() {
+        private DatabaseReference mDatabase;
 
         /**
          * Manipulates the map once available.
@@ -32,26 +39,80 @@ public class MapsFragment extends Fragment {
         @Override
         public void onMapReady(GoogleMap googleMap) {
             LatLng ulCSIS = new LatLng(52.67399792339968, -8.57554856387995);
+            googleMap.clear();
            // googleMap.addMarker(new MarkerOptions().position(ulCSIS).title("Marker in ulCsis"));
 
-            LatLng oaklawns = new LatLng(52.66993860396053, -8.55934684390429);
-            googleMap.addMarker(new MarkerOptions().position(oaklawns).title("Marker in 45 oaklawns"));
+//            LatLng oaklawns = new LatLng(52.66993860396053, -8.55934684390429);
+//            googleMap.addMarker(new MarkerOptions().position(oaklawns).title("Marker in 45 oaklawns"));
+//
+//            LatLng elm = new LatLng(52.66736823100392, -8.567624155703376);
+//            googleMap.addMarker(new MarkerOptions().position(elm).title("Marker in 12A Hazelewood"));
+//
+//            LatLng troy = new LatLng(52.66390497300699, -8.57720826535008);
+//            googleMap.addMarker(new MarkerOptions().position(troy).title("Marker in troy"));
+//
+//            LatLng groody = new LatLng(52.663091599772706, -8.577476486233783);
+//            googleMap.addMarker(new MarkerOptions().position(groody).title("Marker in groody"));
+//
 
-            LatLng elm = new LatLng(52.66736823100392, -8.567624155703376);
-            googleMap.addMarker(new MarkerOptions().position(elm).title("Marker in 12A Hazelewood"));
+/**
+ *
+ * https://firebase.google.com/docs/database/android/read-and-write
+ */
+            mDatabase = FirebaseDatabase.getInstance("https://safeaccomodation-58b6c-default-rtdb.europe-west1.firebasedatabase.app/").getReference().child("Properties");
+            Log.e(" Reached", "before data value event listener");
 
-            LatLng troy = new LatLng(52.66390497300699, -8.57720826535008);
-            googleMap.addMarker(new MarkerOptions().position(troy).title("Marker in troy"));
+            mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
 
-            LatLng groody = new LatLng(52.663091599772706, -8.577476486233783);
-            googleMap.addMarker(new MarkerOptions().position(groody).title("Marker in groody"));
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    Log.e(" Reached", "inside data change class");
+                    for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                        int i = 0;
+                        String address = "House number " + i;
+                        Accommodation accommodation = postSnapshot.getValue(Accommodation.class);
+
+                        String name = accommodation.address;
+                        Double latitude = accommodation.latitude;
+                        Double longitude = accommodation.longitude;
+                        Double price = accommodation.price;
+                        Log.e(" Accomodation", "values of object: " + name + " " + latitude + " " + longitude);
+
+
+                       // LatLng address = new LatLng(latitude, longitude);
+
+                        googleMap.addMarker(new MarkerOptions().position(new LatLng(latitude, longitude)).title("House for rent " + name + " €" + price));
+                        i++;
+                    }
+
+
+
+                   // Log.e("accomodation", "values of object: " + name);
+
+
+
+
+                }
+
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    // Getting Post failed, log a message
+                    Log.w("Load", "loadPost:onCancelled", databaseError.toException());
+                }
+            });
+
+
+
+
+            //adding adapter to recyclerview
+//            mPostReference.addValueEventListener(postListener);
 
             googleMap.moveCamera(CameraUpdateFactory.zoomTo(15));
-
             googleMap.moveCamera(CameraUpdateFactory.newLatLng(ulCSIS));
 
             //need to set it up to ask
-            googleMap.setMyLocationEnabled(true);
+//            googleMap.setMyLocationEnabled(true);
         }
     };
 
