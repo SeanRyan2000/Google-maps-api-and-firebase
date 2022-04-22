@@ -59,6 +59,7 @@ public class CreatePropertyActivity extends AppCompatActivity implements Adapter
     private EditText editTextNumberOfBeds, editTextBedsAvailable, editTextPricePerMonth, editTextContact;
     private Button submitButton, uploadPics;
     private String address, randomKey = "";
+    String imageUrl = "";
     private double latitude, longitude = 9999999.99999;
 
     /**
@@ -158,6 +159,7 @@ public class CreatePropertyActivity extends AppCompatActivity implements Adapter
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==1 && resultCode==RESULT_OK && data!=null &&  data.getData()!=null){
             imageUri = data.getData();
+            imageUrl = imageUri.toString();
             housePics.setImageURI(imageUri);
             uploadPicture();
         }
@@ -219,11 +221,10 @@ public class CreatePropertyActivity extends AppCompatActivity implements Adapter
         double priceDouble = Double.parseDouble(price);
         int numBedsInt = Integer.parseInt(numBeds);
         int bedsAvailableInt = Integer.parseInt(bedsAvailable);
-        String imageUrl;
 
         String houseType =  spinner.getSelectedItem().toString();
 
-        if (randomKey != "") {
+        if (imageUrl != "") {
             imageUrl = "images/" + randomKey;
         }else {
             imageUrl = "";
@@ -307,7 +308,7 @@ public class CreatePropertyActivity extends AppCompatActivity implements Adapter
         switch (view.getId()) {
             case R.id.submitButton:
                 uploadHouse();
-                uploadProperty();
+               // uploadProperty();
                 Toast.makeText(getApplicationContext(), "SUCCESS!!!!", Toast.LENGTH_LONG).show();
                 break;
         }

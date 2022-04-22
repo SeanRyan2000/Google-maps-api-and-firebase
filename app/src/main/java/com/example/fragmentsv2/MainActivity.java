@@ -39,11 +39,6 @@ public class MainActivity extends AppCompatActivity {
         }else {
         }
 
-
-
-
-        Log.e("Reached here", "Didnt get inside of if statement");
-
         super.onCreate(savedInstanceState);
 
 
