@@ -5,6 +5,8 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,8 +15,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -27,7 +32,7 @@ public class ChosenProperty extends AppCompatActivity {
     private static final String TAG = "ChosenProperty";
     private TextView textViewChosenPropertyAddress, textViewChosenPropertyContact, textViewChosenPropertyPrice, textViewChosenPropertyHouseType, textViewChosenPropertyTotalBeds, textViewChosenPropertyAvailableBeds;
     private ImageView imageView;
-
+    private Button bookHouse;
     private FirebaseStorage storage;
     private StorageReference storageReference;
 
@@ -44,7 +49,7 @@ public class ChosenProperty extends AppCompatActivity {
         textViewChosenPropertyTotalBeds = findViewById(R.id.textViewChosenPropertyTotalBeds);
         textViewChosenPropertyAvailableBeds = findViewById(R.id.textViewChosenPropertyAvailableBeds);
         imageView = findViewById(R.id.imageView7);
-
+        bookHouse = findViewById(R.id.bookButton);
 
 
 
@@ -87,5 +92,14 @@ public class ChosenProperty extends AppCompatActivity {
         } else {
 
         }
+
+        bookHouse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseDatabase.getInstance("https://safeaccomodation-58b6c-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Properties")
+                        .child("")
+                        .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+            }
+        });
     }
 }
