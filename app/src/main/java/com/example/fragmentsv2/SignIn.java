@@ -83,8 +83,8 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
         }
 
         //TESTING PURPOSES ONLY DELETE AFTER
-        email = "seanr120700@gmail.com";
-        password = "pass12";
+//        email = "seanr120700@gmail.com";
+//        password = "pass12";
 
         //END TESTING
 

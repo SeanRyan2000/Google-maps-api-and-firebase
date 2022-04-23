@@ -1,6 +1,8 @@
 package com.example.fragmentsv2;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,13 +13,26 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     Context context;
     ArrayList<Accommodation> list;
     private OnNoteListener mOnNoteListener;
+    private FirebaseStorage storage;
+    private StorageReference storageReference;
+    //private ImageView housePic;
+
 
     public MyAdapter(Context context, ArrayList<Accommodation> list, OnNoteListener onNoteListener) {
 
@@ -45,6 +60,26 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.availableBeds.setText("Available Beds: " +  String.valueOf(accomodation.getSpacesAvailable()));
 
         if(accomodation.imageUrl.contains("images")){
+            storageReference = FirebaseStorage.getInstance().getReference().child(accomodation.imageUrl);
+            try {
+                final File localFile = File.createTempFile("house", "png");
+                storageReference.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                        Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
+                        holder.housePic.setImageBitmap(bitmap);
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                    }
+                });
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
         }
 
@@ -58,9 +93,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView address, contact, price, totalBeds, availableBeds;
-        ImageView housePic;
         OnNoteListener onNoteListener;
-
+        ImageView housePic;
 
         public MyViewHolder(@NonNull View itemView, OnNoteListener onNoteListener) {
             super(itemView);
