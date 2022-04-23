@@ -1,5 +1,6 @@
 package com.example.fragmentsv2.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,7 +19,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.fragmentsv2.MainActivity;
 import com.example.fragmentsv2.R;
+import com.example.fragmentsv2.SignIn;
 import com.example.fragmentsv2.User;
 import com.example.fragmentsv2.databinding.FragmentHomeBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -125,6 +128,10 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemSelected
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance("https://safeaccomodation-58b6c-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
+        if(user==null){
+            Intent intent = new Intent(getContext(), SignIn.class);
+            startActivity(intent);
+        }
         userID = user.getUid();
 
 
