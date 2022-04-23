@@ -5,7 +5,7 @@ import android.os.Parcelable;
 
 public class Accommodation implements Parcelable {
 
-    public String address, houseType, contact, imageUrl;
+    public String address, houseType, contact, imageUrl, sellerName, sellerEmail, userId;
     //houseType = detatched, semi detatched, terrace, apartment
     //use a spinner same way I use year of study
     public int numOfBedrooms, spacesAvailable;
@@ -13,11 +13,12 @@ public class Accommodation implements Parcelable {
 
 
 
+
     public Accommodation(){
     }
 
 
-    public Accommodation(String address, String houseType, String contact, String imageUrl, double price, int numOfBedrooms, int spacesAvailable, double longitude, double latitude) {
+    public Accommodation(String address, String houseType, String contact, String imageUrl, double price, int numOfBedrooms, int spacesAvailable, double longitude, double latitude, String sellerName, String sellerEmail, String userId) {
         this.address = address;     // got from auto complete fragment
         this.houseType = houseType;
         this.contact = contact;
@@ -27,6 +28,9 @@ public class Accommodation implements Parcelable {
         this.spacesAvailable = spacesAvailable;
         this.longitude = longitude; // got from auto complete fragment
         this.latitude = latitude;   // got from auto complete fragment
+        this.sellerName = sellerName;
+        this.sellerEmail = sellerEmail;
+        this.userId = userId;
     }
 
     protected Accommodation(Parcel in) {
@@ -39,6 +43,8 @@ public class Accommodation implements Parcelable {
         price = in.readDouble();
         longitude = in.readDouble();
         latitude = in.readDouble();
+        sellerName = in.readString();
+        sellerEmail = in.readString();
     }
 
     public static final Creator<Accommodation> CREATOR = new Creator<Accommodation>() {
@@ -67,6 +73,16 @@ public class Accommodation implements Parcelable {
 
     public String getImageUrl() {
         return imageUrl;
+    }
+
+
+    public String getSellerEmail() {
+        return sellerEmail;
+    }
+
+
+    public String getSellerName() {
+        return sellerName;
     }
 
     public int getNumOfBedrooms() {
@@ -105,5 +121,7 @@ public class Accommodation implements Parcelable {
         parcel.writeDouble(price);
         parcel.writeDouble(longitude);
         parcel.writeDouble(latitude);
+        parcel.writeString(sellerName);
+        parcel.writeString(sellerEmail);
     }
 }

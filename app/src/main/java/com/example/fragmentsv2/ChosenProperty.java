@@ -30,7 +30,7 @@ import java.io.IOException;
 public class ChosenProperty extends AppCompatActivity {
 
     private static final String TAG = "ChosenProperty";
-    private TextView textViewChosenPropertyAddress, textViewChosenPropertyContact, textViewChosenPropertyPrice, textViewChosenPropertyHouseType, textViewChosenPropertyTotalBeds, textViewChosenPropertyAvailableBeds;
+    private TextView textViewChosenPropertyAddress, textViewChosenPropertyContact, textViewChosenPropertyPrice, textViewChosenPropertyHouseType, textViewChosenPropertyTotalBeds, textViewChosenPropertyAvailableBeds, textViewSellerName, textViewSellerEmail;
     private ImageView imageView;
     private Button bookHouse;
     private FirebaseStorage storage;
@@ -48,6 +48,10 @@ public class ChosenProperty extends AppCompatActivity {
         textViewChosenPropertyHouseType = findViewById(R.id.textViewChosenPropertyHouseType);
         textViewChosenPropertyTotalBeds = findViewById(R.id.textViewChosenPropertyTotalBeds);
         textViewChosenPropertyAvailableBeds = findViewById(R.id.textViewChosenPropertyAvailableBeds);
+        textViewChosenPropertyAvailableBeds = findViewById(R.id.textViewChosenPropertyAvailableBeds);
+        textViewChosenPropertyAvailableBeds = findViewById(R.id.textViewChosenPropertyAvailableBeds);
+        textViewSellerName = findViewById(R.id.textViewSellerName);
+        textViewSellerEmail = findViewById(R.id.textViewSellerEmail);
         imageView = findViewById(R.id.imageView7);
         bookHouse = findViewById(R.id.bookButton);
 
@@ -62,6 +66,16 @@ public class ChosenProperty extends AppCompatActivity {
             textViewChosenPropertyHouseType.setText("House Type: " + accommodation.houseType);
             textViewChosenPropertyTotalBeds.setText("Total number of bedrooms: " + String.valueOf(accommodation.numOfBedrooms));
             textViewChosenPropertyAvailableBeds.setText("Bedroom(s) available: " + String.valueOf(accommodation.spacesAvailable));
+
+            textViewSellerName.setText("Contact Name: " + accommodation.sellerName);
+            Log.e(TAG, "onCreate:, "  + accommodation.sellerName);
+            Log.e(TAG, "onCreate:, "  + accommodation.sellerName);
+            Log.e(TAG, "onCreate:, "  + accommodation.sellerName);
+            Log.e(TAG, "onCreate:, "  + accommodation.sellerName);
+            Log.e(TAG, "onCreate:, "  + accommodation.sellerName);
+            Log.e(TAG, "onCreate:, "  + accommodation.sellerName);
+            Log.e(TAG, "onCreate:, "  + accommodation.sellerName);
+            textViewSellerEmail.setText("Contact email: " + accommodation.sellerEmail);
             try {
                 if(accommodation.imageUrl.contains("images")) {
                     storageReference = FirebaseStorage.getInstance().getReference().child(accommodation.imageUrl);
@@ -93,13 +107,15 @@ public class ChosenProperty extends AppCompatActivity {
 
         }
 
-        bookHouse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FirebaseDatabase.getInstance("https://safeaccomodation-58b6c-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Properties")
-                        .child("")
-                        .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-            }
-        });
+//        bookHouse.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                FirebaseDatabase.getInstance("https://safeaccomodation-58b6c-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Properties")
+//                        .child("")
+//                        .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+//            }
+//        });
+
+
     }
 }

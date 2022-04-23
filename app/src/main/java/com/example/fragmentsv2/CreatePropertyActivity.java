@@ -37,7 +37,11 @@ import com.google.android.libraries.places.widget.listener.PlaceSelectionListene
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -56,11 +60,17 @@ public class CreatePropertyActivity extends AppCompatActivity implements Adapter
     private Uri imageUri;
     private FirebaseStorage storage;
     private StorageReference storageReference;
+    private String userID;
     private EditText editTextNumberOfBeds, editTextBedsAvailable, editTextPricePerMonth, editTextContact;
     private Button submitButton, uploadPics;
     private String address, randomKey = "";
     String imageUrl = "";
     private double latitude, longitude = 9999999.99999;
+    private FirebaseUser user;
+    private DatabaseReference reference;
+
+
+    String sellerEmail, sellerName = "";
 
     /**
      * Used this tutorial to help with the code
@@ -79,6 +89,7 @@ public class CreatePropertyActivity extends AppCompatActivity implements Adapter
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
 
+
         //initialiaze edittexts
         editTextNumberOfBeds = (EditText) findViewById(R.id.editTextNumberOfBeds);
         editTextBedsAvailable = (EditText) findViewById(R.id.editTextBedsAvailable);
@@ -87,6 +98,10 @@ public class CreatePropertyActivity extends AppCompatActivity implements Adapter
 
         submitButton = (Button) findViewById(R.id.submitButton);
         submitButton.setOnClickListener(this);
+
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        reference = FirebaseDatabase.getInstance("https://safeaccomodation-58b6c-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
+        userID = user.getUid();
 
         String apikey = "AIzaSyAlc_SUKl0mIn0pUfa3pUiHkNu5TEQucSI";
         if(!Places.isInitialized()) {
@@ -121,6 +136,25 @@ public class CreatePropertyActivity extends AppCompatActivity implements Adapter
             }
             @Override
             public void onError(@NonNull Status status) {
+            }
+        });
+
+
+        reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User userProfile = snapshot.getValue(User.class);
+                sellerEmail = userProfile.email;
+                sellerName = userProfile.fullName;
+                Log.e(sellerName, "onDataChange: " +sellerName  );
+                Log.e(sellerName, "onDataChange: " +sellerName  );
+                Log.e(sellerName, "onDataChange: " +sellerName  );
+                Log.e(sellerName, "onDataChange: " +sellerName  );
+                Log.e(sellerName, "onDataChange: " +sellerName  );
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
 
@@ -229,7 +263,14 @@ public class CreatePropertyActivity extends AppCompatActivity implements Adapter
         }else {
             imageUrl = "";
         }
-        Accommodation accomodation = new Accommodation(address, houseType, contact, imageUrl, priceDouble, numBedsInt, bedsAvailableInt, longitude, latitude);
+
+
+
+
+
+
+
+        Accommodation accomodation = new Accommodation(address, houseType, contact, imageUrl, priceDouble, numBedsInt, bedsAvailableInt, longitude, latitude, sellerName, sellerEmail, userID);
         Log.e("Accomodation", accomodation.toString());
         Log.e("Accomodation", accomodation.toString());
         Log.e("Accomodation", accomodation.toString());
@@ -248,8 +289,13 @@ public class CreatePropertyActivity extends AppCompatActivity implements Adapter
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
-                    Toast.makeText(CreatePropertyActivity.this, "Property successfully registered", Toast.LENGTH_LONG).show();
-                    finish();
+                    Toast.makeText(CreatePropertyActivity.this, "Property successfully registered " + storageKey, Toast.LENGTH_LONG).show();
+                    Log.d("  sttrage key", "onComplete: " + storageKey);
+                    Log.d("  sttrage key", "onComplete: " + storageKey);
+                    Log.d("  sttrage key", "onComplete: " + storageKey);
+                    Log.d("  sttrage key", "onComplete: " + storageKey);
+                    Log.d("  sttrage key", "onComplete: " + storageKey);
+                    //finish();
                 } else {
                     Toast.makeText(CreatePropertyActivity.this, "Registration failed, try again", Toast.LENGTH_LONG).show();
                 }
