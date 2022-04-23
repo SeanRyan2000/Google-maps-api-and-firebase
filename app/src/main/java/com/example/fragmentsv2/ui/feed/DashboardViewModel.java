@@ -1,4 +1,4 @@
-package com.example.fragmentsv2.ui.dashboard;
+package com.example.fragmentsv2.ui.feed;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

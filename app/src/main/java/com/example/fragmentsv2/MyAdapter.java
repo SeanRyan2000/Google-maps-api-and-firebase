@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -42,6 +43,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.price.setText("Price per month: €" + String.valueOf(accomodation.getPrice()));
         holder.totalBeds.setText("Total Beds: " + String.valueOf(accomodation.getNumOfBedrooms()));
         holder.availableBeds.setText("Available Beds: " +  String.valueOf(accomodation.getSpacesAvailable()));
+
+        if(accomodation.imageUrl.contains("images")){
+
+        }
+
     }
 
     @Override
@@ -52,6 +58,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView address, contact, price, totalBeds, availableBeds;
+        ImageView housePic;
         OnNoteListener onNoteListener;
 
 
@@ -63,6 +70,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             price = itemView.findViewById(R.id.textViewShowPrice);
             totalBeds = itemView.findViewById(R.id.textViewShowTotalBeds);
             availableBeds = itemView.findViewById(R.id.textViewShowBedsAvailable);
+            housePic = itemView.findViewById(R.id.imageView);
 
             this.onNoteListener = onNoteListener;
 

@@ -1,4 +1,4 @@
-package com.example.fragmentsv2.ui.dashboard;
+package com.example.fragmentsv2.ui.feed;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,7 +19,6 @@ import com.example.fragmentsv2.Accommodation;
 import com.example.fragmentsv2.ChosenProperty;
 import com.example.fragmentsv2.CreatePropertyActivity;
 import com.example.fragmentsv2.MyAdapter;
-import com.example.fragmentsv2.ProfileActivity;
 import com.example.fragmentsv2.R;
 import com.example.fragmentsv2.databinding.FragmentDashboardBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -33,7 +32,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 
-public class DashboardFragment extends Fragment  implements MyAdapter.OnNoteListener{
+public class FeedFragment extends Fragment  implements MyAdapter.OnNoteListener{
 
     private FragmentDashboardBinding binding;
     private FirebaseUser user;
