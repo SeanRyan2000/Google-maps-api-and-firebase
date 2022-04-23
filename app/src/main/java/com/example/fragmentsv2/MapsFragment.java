@@ -40,20 +40,6 @@ public class MapsFragment extends Fragment {
         public void onMapReady(GoogleMap googleMap) {
             LatLng ulCSIS = new LatLng(52.67399792339968, -8.57554856387995);
             googleMap.clear();
-           // googleMap.addMarker(new MarkerOptions().position(ulCSIS).title("Marker in ulCsis"));
-
-//            LatLng oaklawns = new LatLng(52.66993860396053, -8.55934684390429);
-//            googleMap.addMarker(new MarkerOptions().position(oaklawns).title("Marker in 45 oaklawns"));
-//
-//            LatLng elm = new LatLng(52.66736823100392, -8.567624155703376);
-//            googleMap.addMarker(new MarkerOptions().position(elm).title("Marker in 12A Hazelewood"));
-//
-//            LatLng troy = new LatLng(52.66390497300699, -8.57720826535008);
-//            googleMap.addMarker(new MarkerOptions().position(troy).title("Marker in troy"));
-//
-//            LatLng groody = new LatLng(52.663091599772706, -8.577476486233783);
-//            googleMap.addMarker(new MarkerOptions().position(groody).title("Marker in groody"));
-//
 
 /**
  *

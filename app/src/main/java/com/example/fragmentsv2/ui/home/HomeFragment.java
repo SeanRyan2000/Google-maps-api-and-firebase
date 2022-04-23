@@ -1,6 +1,5 @@
 package com.example.fragmentsv2.ui.home;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,11 +17,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
 
-import com.example.fragmentsv2.ProfileActivity;
 import com.example.fragmentsv2.R;
-import com.example.fragmentsv2.SignIn;
 import com.example.fragmentsv2.User;
 import com.example.fragmentsv2.databinding.FragmentHomeBinding;
 import com.google.android.gms.tasks.OnCompleteListener;

@@ -289,13 +289,9 @@ public class CreatePropertyActivity extends AppCompatActivity implements Adapter
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
-                    Toast.makeText(CreatePropertyActivity.this, "Property successfully registered " + storageKey, Toast.LENGTH_LONG).show();
-                    Log.d("  sttrage key", "onComplete: " + storageKey);
-                    Log.d("  sttrage key", "onComplete: " + storageKey);
-                    Log.d("  sttrage key", "onComplete: " + storageKey);
-                    Log.d("  sttrage key", "onComplete: " + storageKey);
-                    Log.d("  sttrage key", "onComplete: " + storageKey);
-                    //finish();
+                    Toast.makeText(CreatePropertyActivity.this, "Property successfully registered ", Toast.LENGTH_LONG).show();
+
+                    finish();
                 } else {
                     Toast.makeText(CreatePropertyActivity.this, "Registration failed, try again", Toast.LENGTH_LONG).show();
                 }
@@ -355,7 +351,8 @@ public class CreatePropertyActivity extends AppCompatActivity implements Adapter
             case R.id.submitButton:
                 uploadHouse();
                // uploadProperty();
-                Toast.makeText(getApplicationContext(), "SUCCESS!!!!", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "SUCCESS!!!!", Toast.LENGTH_LONG).show();
+                //finish();
                 break;
         }
     }
