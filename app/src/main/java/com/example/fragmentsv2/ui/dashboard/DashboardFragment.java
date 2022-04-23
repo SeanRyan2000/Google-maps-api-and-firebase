@@ -108,9 +108,9 @@ public class DashboardFragment extends Fragment  implements MyAdapter.OnNoteList
                     Double latitude = accommodation.latitude;
                     Double longitude = accommodation.longitude;
                     Double price = accommodation.price;
-                    String email = accommodation.sellerEmail;
+                    //String email = accommodation.sellerEmail;
 
-                    Log.e(" Accomodation", "values of object: " + name + " " + latitude + " " + longitude + " " + email);
+                    Log.e(" Accomodation", "values of object: " + name + " " + latitude + " " + longitude);
                     Log.e(" Accomodation", "values of object: " + name + " " + latitude + " " + longitude);
                     Log.e(" Accomodation", "values of object: " + name + " " + latitude + " " + longitude);
 

@@ -20,12 +20,6 @@
         android:text="TextViewChosenProprtyAddress" />
 
     <TextView
-        android:id="@+id/textViewChosenPropertyContact"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextViewChosenProprtyContact" />
-
-    <TextView
         android:id="@+id/textViewChosenPropertyPrice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -63,6 +57,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="TextView" />
+
+    <TextView
+        android:id="@+id/textViewChosenPropertyContact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextViewChosenProprtyContact" />
 
     <TextView
         android:id="@+id/textViewSellerEmail"

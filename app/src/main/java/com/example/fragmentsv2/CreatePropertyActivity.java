@@ -269,17 +269,17 @@ public class CreatePropertyActivity extends AppCompatActivity implements Adapter
 
 
 
-
-        Accommodation accomodation = new Accommodation(address, houseType, contact, imageUrl, priceDouble, numBedsInt, bedsAvailableInt, longitude, latitude, sellerName, sellerEmail, userID);
-        Log.e("Accomodation", accomodation.toString());
-        Log.e("Accomodation", accomodation.toString());
-        Log.e("Accomodation", accomodation.toString());
-        Log.e("Accomodation", accomodation.toString());
-        Log.e("Accomodation", accomodation.toString());
-        Log.e("Accomodation", accomodation.toString());
-        Log.e("Accomodation", accomodation.toString());
-
         String storageKey = UUID.randomUUID().toString();
+
+        Accommodation accomodation = new Accommodation(address, houseType, contact, imageUrl, priceDouble, numBedsInt, bedsAvailableInt, longitude, latitude, sellerName, sellerEmail, userID, storageKey);
+        Log.e("Accomodation", accomodation.toString());
+        Log.e("Accomodation", accomodation.toString());
+        Log.e("Accomodation", accomodation.toString());
+        Log.e("Accomodation", accomodation.toString());
+        Log.e("Accomodation", accomodation.toString());
+        Log.e("Accomodation", accomodation.toString());
+        Log.e("Accomodation", accomodation.toString());
+
 
 
 

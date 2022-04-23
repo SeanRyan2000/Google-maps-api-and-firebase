@@ -36,6 +36,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Accommodation accomodation = list.get(position);
+
         holder.address.setText("Address: " + accomodation.getAddress());
         holder.contact.setText("Contact number: " + accomodation.getContact());
         holder.price.setText("Price per month: €" + String.valueOf(accomodation.getPrice()));

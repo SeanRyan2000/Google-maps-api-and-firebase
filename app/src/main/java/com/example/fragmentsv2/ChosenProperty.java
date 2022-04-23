@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FileDownloadTask;
@@ -56,28 +57,20 @@ public class ChosenProperty extends AppCompatActivity {
         bookHouse = findViewById(R.id.bookButton);
 
 
-
 //
-        if(getIntent().hasExtra("selected_accomodation")){
+        if (getIntent().hasExtra("selected_accomodation")) {
             Accommodation accommodation = getIntent().getParcelableExtra("selected_accomodation");
+
             textViewChosenPropertyAddress.setText("Address: " + accommodation.address);
             textViewChosenPropertyContact.setText("Contact: " + accommodation.contact);
             textViewChosenPropertyPrice.setText("Price per Month: €" + String.valueOf(accommodation.price));
             textViewChosenPropertyHouseType.setText("House Type: " + accommodation.houseType);
             textViewChosenPropertyTotalBeds.setText("Total number of bedrooms: " + String.valueOf(accommodation.numOfBedrooms));
             textViewChosenPropertyAvailableBeds.setText("Bedroom(s) available: " + String.valueOf(accommodation.spacesAvailable));
-
             textViewSellerName.setText("Contact Name: " + accommodation.sellerName);
-            Log.e(TAG, "onCreate:, "  + accommodation.sellerName);
-            Log.e(TAG, "onCreate:, "  + accommodation.sellerName);
-            Log.e(TAG, "onCreate:, "  + accommodation.sellerName);
-            Log.e(TAG, "onCreate:, "  + accommodation.sellerName);
-            Log.e(TAG, "onCreate:, "  + accommodation.sellerName);
-            Log.e(TAG, "onCreate:, "  + accommodation.sellerName);
-            Log.e(TAG, "onCreate:, "  + accommodation.sellerName);
             textViewSellerEmail.setText("Contact email: " + accommodation.sellerEmail);
             try {
-                if(accommodation.imageUrl.contains("images")) {
+                if (accommodation.imageUrl.contains("images")) {
                     storageReference = FirebaseStorage.getInstance().getReference().child(accommodation.imageUrl);
 
 
@@ -96,26 +89,47 @@ public class ChosenProperty extends AppCompatActivity {
 
                         }
                     });
-                }else{
+
+
+
+                } else {
 
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
+            bookHouse.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (accommodation.spacesAvailable > 0) {
+                        accommodation.spacesAvailable--;
+                        Log.e(TAG, "onClick: ");
+                        FirebaseDatabase.getInstance("https://safeaccomodation-58b6c-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Properties").child(accommodation.parentReference)
+                                .setValue(accommodation).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(ChosenProperty.this, "Booked House!", Toast.LENGTH_LONG).show();
+                                    finish();
+                                } else {
+                                    Toast.makeText(ChosenProperty.this, "Error, try again", Toast.LENGTH_LONG).show();
+                                }
+                            }
+
+                        });
+
+                    }else{
+                        Toast.makeText(ChosenProperty.this, "House fully booked", Toast.LENGTH_LONG).show();
+                        finish();
+
+                    }
+                }
+            });
+
         } else {
 
         }
-
-//        bookHouse.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                FirebaseDatabase.getInstance("https://safeaccomodation-58b6c-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Properties")
-//                        .child("")
-//                        .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-//            }
-//        });
-
 
     }
 }

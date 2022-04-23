@@ -5,7 +5,7 @@ import android.os.Parcelable;
 
 public class Accommodation implements Parcelable {
 
-    public String address, houseType, contact, imageUrl, sellerName, sellerEmail, userId;
+    public String address, houseType, contact, imageUrl, sellerName, sellerEmail, userId, parentReference;
     //houseType = detatched, semi detatched, terrace, apartment
     //use a spinner same way I use year of study
     public int numOfBedrooms, spacesAvailable;
@@ -18,7 +18,8 @@ public class Accommodation implements Parcelable {
     }
 
 
-    public Accommodation(String address, String houseType, String contact, String imageUrl, double price, int numOfBedrooms, int spacesAvailable, double longitude, double latitude, String sellerName, String sellerEmail, String userId) {
+    public Accommodation(String address, String houseType, String contact, String imageUrl, double price, int numOfBedrooms,
+                         int spacesAvailable, double longitude, double latitude, String sellerName, String sellerEmail, String userId, String parentReference) {
         this.address = address;     // got from auto complete fragment
         this.houseType = houseType;
         this.contact = contact;
@@ -31,6 +32,7 @@ public class Accommodation implements Parcelable {
         this.sellerName = sellerName;
         this.sellerEmail = sellerEmail;
         this.userId = userId;
+        this.parentReference = parentReference;
     }
 
     protected Accommodation(Parcel in) {
@@ -45,6 +47,7 @@ public class Accommodation implements Parcelable {
         latitude = in.readDouble();
         sellerName = in.readString();
         sellerEmail = in.readString();
+        parentReference = in.readString();
     }
 
     public static final Creator<Accommodation> CREATOR = new Creator<Accommodation>() {
@@ -105,6 +108,10 @@ public class Accommodation implements Parcelable {
         return latitude;
     }
 
+    public void setSpacesAvailable(int spacesAvailable) {
+        this.spacesAvailable = spacesAvailable;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -123,5 +130,6 @@ public class Accommodation implements Parcelable {
         parcel.writeDouble(latitude);
         parcel.writeString(sellerName);
         parcel.writeString(sellerEmail);
+        parcel.writeString(parentReference);
     }
 }
