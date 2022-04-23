@@ -312,6 +312,11 @@ public class CreatePropertyActivity extends AppCompatActivity implements Adapter
             editTextBedsAvailable.requestFocus();
             return false;
         }
+        if(Integer.parseInt(numBeds) < Integer.parseInt(bedsAvailable)){
+            editTextBedsAvailable.setError("Can't be less than beds available");
+            editTextBedsAvailable.requestFocus();
+            return false;
+        }
         if(price.isEmpty()){
             editTextPricePerMonth.setError("Can't be empty");
             editTextPricePerMonth.requestFocus();
@@ -337,9 +342,9 @@ public class CreatePropertyActivity extends AppCompatActivity implements Adapter
         }
         if(longitude == 9999999.99999) {
             Toast.makeText(getApplicationContext(), "Failed to get address. Try again", Toast.LENGTH_LONG).show();
-
             return false;
         }
+
 
 
         return true;
